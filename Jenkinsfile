@@ -6,17 +6,17 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker-compose build'
+                echo 'building the application…'
             }
         }
         stage('Test'){
             steps {
-                sh 'docker-compose up -d; sleep 100; docker-compose ps -q flask-app-server'
+                echo 'testing the application…'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'make publish'
+                echo 'deploying the application…'
             }
         }
     }
