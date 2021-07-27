@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    environment {
+        NEW_VERSION = '1.3.0'
+            }
+    tools {
+        maven 'Maven'
+    }
     options {
         skipStagesAfterUnstable()
     }
@@ -7,6 +13,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building the application…'
+                echo "building version ${NEW_VERSION}"
+                sh "mvn install"
             }
         }
         stage('Test'){
@@ -22,6 +30,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'deploying the application…'
+                
             }
         }
     }
